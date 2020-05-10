@@ -9,9 +9,11 @@
     <list default="true" id="38aa762f-46fa-4ed0-a30b-0399a8c0f526" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CallActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CallActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/DirectRTCClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/TCPChannelClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/ConnectActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/ConnectActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/SettingsActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/SettingsFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/connect_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/connect_menu.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +40,7 @@
   <component name="ProjectId" id="1bhToAEPeEOaH6xF0I1d6T9eqjJ" />
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="0123456789ABCDEF" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-10T09:16:43.312Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-10T09:23:27.494Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
