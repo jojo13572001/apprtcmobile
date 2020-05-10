@@ -37,7 +37,6 @@ public class HudFragment extends Fragment {
   private boolean videoCallEnabled;
   private boolean displayHud;
   private volatile boolean isRunning;
-  private CpuMonitor cpuMonitor;
 
   @Override
   public View onCreateView(
@@ -86,10 +85,6 @@ public class HudFragment extends Fragment {
   public void onStop() {
     isRunning = false;
     super.onStop();
-  }
-
-  public void setCpuMonitor(CpuMonitor cpuMonitor) {
-    this.cpuMonitor = cpuMonitor;
   }
 
   private void hudViewsSetProperties(int visibility) {
@@ -189,15 +184,6 @@ public class HudFragment extends Fragment {
       if (actualBitrate != null) {
         encoderStat.append("Actual BR: ").append(actualBitrate).append("\n");
       }
-    }
-
-    if (cpuMonitor != null) {
-      encoderStat.append("CPU%: ")
-          .append(cpuMonitor.getCpuUsageCurrent())
-          .append("/")
-          .append(cpuMonitor.getCpuUsageAverage())
-          .append(". Freq: ")
-          .append(cpuMonitor.getFrequencyScaleAverage());
     }
     encoderStatView.setText(encoderStat.toString());
   }
