@@ -4,10 +4,4 @@
         android:icon="@drawable/ic_loopback_call"
         android:showAsAction="always"
         android:title="@string/action_loopback"/>
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_settings"/>
 </menu>
