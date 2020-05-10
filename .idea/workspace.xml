@@ -9,9 +9,8 @@
     <list default="true" id="38aa762f-46fa-4ed0-a30b-0399a8c0f526" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CallFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CallFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CaptureQualityController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/PeerConnectionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/PeerConnectionClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/RtcEventLog.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -145,7 +144,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/PeerConnectionClient.java</url>
-          <line>1250</line>
+          <line>1240</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

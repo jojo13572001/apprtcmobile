@@ -171,9 +171,6 @@ public class PeerConnectionClient {
   @Nullable
   private DataChannel dataChannel;
   private final boolean dataChannelEnabled;
-  // Enable RtcEventLog.
-  @Nullable
-  private RtcEventLog rtcEventLog;
 
   /**
    * Peer connection parameters.
@@ -647,8 +644,6 @@ public class PeerConnectionClient {
       Log.d(TAG, "RtcEventLog is disabled.");
       return;
     }
-    rtcEventLog = new RtcEventLog(peerConnection);
-    rtcEventLog.start(createRtcEventLogOutputFile());
   }
 
   private void closeInternal() {
@@ -660,11 +655,6 @@ public class PeerConnectionClient {
     if (dataChannel != null) {
       dataChannel.dispose();
       dataChannel = null;
-    }
-    if (rtcEventLog != null) {
-      // RtcEventLog should stop before the peer connection is disposed.
-      rtcEventLog.stop();
-      rtcEventLog = null;
     }
     if (peerConnection != null) {
       peerConnection.dispose();
