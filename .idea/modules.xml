@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="apprtcmobile/app" />
       <module fileurl="file://$PROJECT_DIR$/apprtcmobile.iml" filepath="$PROJECT_DIR$/apprtcmobile.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libwebrtc/libwebrtc.iml" filepath="$PROJECT_DIR$/libwebrtc/libwebrtc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/git-apprtcmobile.iml" filepath="$PROJECT_DIR$/git-apprtcmobile.iml" group="apprtcmobile" />
+      <module fileurl="file://$PROJECT_DIR$/libwebrtc/libwebrtc.iml" filepath="$PROJECT_DIR$/libwebrtc/libwebrtc.iml" group="apprtcmobile/libwebrtc" />
     </modules>
   </component>
 </project>

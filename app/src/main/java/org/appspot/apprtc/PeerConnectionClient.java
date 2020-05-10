@@ -608,6 +608,7 @@ public class PeerConnectionClient {
     peerConnection = factory.createPeerConnection(rtcConfig, pcObserver);
 
     if (dataChannelEnabled) {
+      /*
       DataChannel.Init init = new DataChannel.Init();
       init.ordered = peerConnectionParameters.dataChannelParameters.ordered;
       init.negotiated = peerConnectionParameters.dataChannelParameters.negotiated;
@@ -615,7 +616,8 @@ public class PeerConnectionClient {
       init.maxRetransmitTimeMs = peerConnectionParameters.dataChannelParameters.maxRetransmitTimeMs;
       init.id = peerConnectionParameters.dataChannelParameters.id;
       init.protocol = peerConnectionParameters.dataChannelParameters.protocol;
-      dataChannel = peerConnection.createDataChannel("ApprtcDemo data", init);
+       */
+      dataChannel = peerConnection.createDataChannel("ApprtcDemo data", new DataChannel.Init());
     }
     isInitiator = false;
 
@@ -1271,7 +1273,12 @@ public class PeerConnectionClient {
 
         @Override
         public void onStateChange() {
-          Log.d(TAG, "Data channel state changed: " + dc.label() + ": " + dc.state());
+          String msg = "Data channel state changed: " + dc.label() + ": " + dc.state();
+          Log.d(TAG, msg);
+          if (dataChannel.state() == DataChannel.State.OPEN) {
+            ByteBuffer data = ByteBuffer.wrap(msg.getBytes(Charset.defaultCharset()));
+            dataChannel.send(new DataChannel.Buffer(data, false));
+          }
         }
 
         @Override
