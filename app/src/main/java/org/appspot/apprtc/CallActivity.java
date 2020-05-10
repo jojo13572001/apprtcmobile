@@ -512,13 +512,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   }
 
   @Override
-  public void onCaptureFormatChange(int width, int height, int framerate) {
-    if (peerConnectionClient != null) {
-      peerConnectionClient.changeCaptureFormat(width, height, framerate);
-    }
-  }
-
-  @Override
   public boolean onToggleMic() {
     if (peerConnectionClient != null) {
       micEnabled = !micEnabled;
