@@ -9,8 +9,9 @@
     <list default="true" id="38aa762f-46fa-4ed0-a30b-0399a8c0f526" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/PeerConnectionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/PeerConnectionClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/RtcEventLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CallActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/CallActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/DirectRTCClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/appspot/apprtc/TCPChannelClient.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +37,8 @@
   </component>
   <component name="ProjectId" id="1bhToAEPeEOaH6xF0I1d6T9eqjJ" />
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="0123456789ABCDEF" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-10T09:16:43.312Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -133,7 +136,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
