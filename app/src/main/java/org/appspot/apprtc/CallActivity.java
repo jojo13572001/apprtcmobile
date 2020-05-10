@@ -37,8 +37,7 @@ import java.lang.RuntimeException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import org.appspot.apprtc.AppRTCAudioManager.AudioDevice;
-import org.appspot.apprtc.AppRTCAudioManager.AudioManagerEvents;
+
 import org.appspot.apprtc.AppRTCClient.RoomConnectionParameters;
 import org.appspot.apprtc.AppRTCClient.SignalingParameters;
 import org.appspot.apprtc.PeerConnectionClient.DataChannelParameters;
@@ -155,7 +154,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   private AppRTCClient appRtcClient;
   @Nullable
   private SignalingParameters signalingParameters;
-  @Nullable private AppRTCAudioManager audioManager;
   @Nullable
   private SurfaceViewRenderer pipRenderer;
   @Nullable
@@ -564,22 +562,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     // Start room connection.
     logAndToast(getString(R.string.connecting_to, roomConnectionParameters.roomUrl));
     appRtcClient.connectToRoom(roomConnectionParameters);
-
-    // Create and audio manager that will take care of audio routing,
-    // audio modes, audio device enumeration etc.
-    audioManager = AppRTCAudioManager.create(getApplicationContext());
-    // Store existing audio settings and change audio mode to
-    // MODE_IN_COMMUNICATION for best possible VoIP performance.
-    Log.d(TAG, "Starting the audio manager...");
-    audioManager.start(new AudioManagerEvents() {
-      // This method will be called each time the number of available audio
-      // devices has changed.
-      @Override
-      public void onAudioDeviceChanged(
-          AudioDevice audioDevice, Set<AudioDevice> availableAudioDevices) {
-        onAudioManagerDevicesChanged(audioDevice, availableAudioDevices);
-      }
-    });
   }
 
   // Should be called from UI thread
@@ -593,15 +575,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     // Enable statistics callback.
     peerConnectionClient.enableStatsEvents(true, STAT_CALLBACK_PERIOD);
     setSwappedFeeds(false /* isSwappedFeeds */);
-  }
-
-  // This method is called when the audio manager reports audio device change,
-  // e.g. from wired headset to speakerphone.
-  private void onAudioManagerDevicesChanged(
-      final AudioDevice device, final Set<AudioDevice> availableDevices) {
-    Log.d(TAG, "onAudioManagerDevicesChanged: " + availableDevices + ", "
-            + "selected: " + device);
-    // TODO(henrika): add callback handler.
   }
 
   // Disconnect from remote resources, dispose of local resources, and exit.
@@ -628,10 +601,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     if (peerConnectionClient != null) {
       peerConnectionClient.close();
       peerConnectionClient = null;
-    }
-    if (audioManager != null) {
-      audioManager.stop();
-      audioManager = null;
     }
     if (connected && !isError) {
       setResult(RESULT_OK);

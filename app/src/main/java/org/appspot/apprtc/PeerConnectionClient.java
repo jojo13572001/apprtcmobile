@@ -13,7 +13,7 @@ package org.appspot.apprtc;
 import android.content.Context;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
-import android.preference.PreferenceManager;
+
 import androidx.annotation.Nullable;
 import android.util.Log;
 import java.io.File;
@@ -36,7 +36,6 @@ import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.appspot.apprtc.AppRTCClient.SignalingParameters;
-import org.appspot.apprtc.RecordedAudioToFileController;
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.CameraVideoCapturer;
@@ -50,7 +49,6 @@ import org.webrtc.Logging;
 import org.webrtc.MediaConstraints;
 import org.webrtc.MediaStream;
 import org.webrtc.MediaStreamTrack;
-import org.webrtc.MediaStreamTrack.MediaType;
 import org.webrtc.PeerConnection;
 import org.webrtc.PeerConnection.IceConnectionState;
 import org.webrtc.PeerConnection.PeerConnectionState;
@@ -176,9 +174,6 @@ public class PeerConnectionClient {
   // Enable RtcEventLog.
   @Nullable
   private RtcEventLog rtcEventLog;
-  // Implements the WebRtcAudioRecordSamplesReadyCallback interface and writes
-  // recorded audio samples to an output file.
-  @Nullable private RecordedAudioToFileController saveRecordedAudioToFile;
 
   /**
    * Peer connection parameters.
@@ -407,24 +402,6 @@ public class PeerConnectionClient {
     preferIsac = peerConnectionParameters.audioCodec != null
         && peerConnectionParameters.audioCodec.equals(AUDIO_CODEC_ISAC);
 
-    // It is possible to save a copy in raw PCM format on a file by checking
-    // the "Save input audio to file" checkbox in the Settings UI. A callback
-    // interface is set when this flag is enabled. As a result, a copy of recorded
-    // audio samples are provided to this client directly from the native audio
-    // layer in Java.
-    if (peerConnectionParameters.saveInputAudioToFile) {
-      if (!peerConnectionParameters.useOpenSLES) {
-        Log.d(TAG, "Enable recording of microphone input audio to file");
-        saveRecordedAudioToFile = new RecordedAudioToFileController(executor);
-      } else {
-        // TODO(henrika): ensure that the UI reflects that if OpenSL ES is selected,
-        // then the "Save inut audio to file" option shall be grayed out.
-        Log.e(TAG, "Recording of input audio is not supported for OpenSL ES");
-      }
-    }
-
-    final AudioDeviceModule adm = createJavaAudioDevice();
-
     // Create peer connection factory.
     if (options != null) {
       Log.d(TAG, "Factory networkIgnoreMask option: " + options.networkIgnoreMask);
@@ -445,12 +422,10 @@ public class PeerConnectionClient {
 
     factory = PeerConnectionFactory.builder()
                   .setOptions(options)
-                  .setAudioDeviceModule(adm)
                   .setVideoEncoderFactory(encoderFactory)
                   .setVideoDecoderFactory(decoderFactory)
                   .createPeerConnectionFactory();
     Log.d(TAG, "Peer connection factory created.");
-    adm.release();
   }
 
   AudioDeviceModule createJavaAudioDevice() {
@@ -530,7 +505,6 @@ public class PeerConnectionClient {
     };
 
     return JavaAudioDeviceModule.builder(appContext)
-        .setSamplesReadyCallback(saveRecordedAudioToFile)
         .setUseHardwareAcousticEchoCanceler(!peerConnectionParameters.disableBuiltInAEC)
         .setUseHardwareNoiseSuppressor(!peerConnectionParameters.disableBuiltInNS)
         .setAudioRecordErrorCallback(audioRecordErrorCallback)
@@ -654,11 +628,6 @@ public class PeerConnectionClient {
       }
     }
 
-    if (saveRecordedAudioToFile != null) {
-      if (saveRecordedAudioToFile.start()) {
-        Log.d(TAG, "Recording input audio to file is activated");
-      }
-    }
     Log.d(TAG, "Peer connection created.");
   }
 
@@ -726,11 +695,7 @@ public class PeerConnectionClient {
       surfaceTextureHelper.dispose();
       surfaceTextureHelper = null;
     }
-    if (saveRecordedAudioToFile != null) {
-      Log.d(TAG, "Closing audio file for recorded input audio.");
-      saveRecordedAudioToFile.stop();
-      saveRecordedAudioToFile = null;
-    }
+
     localRender = null;
     remoteSinks = null;
     Log.d(TAG, "Closing peer connection factory.");
