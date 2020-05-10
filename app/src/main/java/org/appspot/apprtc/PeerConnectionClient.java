@@ -80,7 +80,7 @@ import org.webrtc.audio.JavaAudioDeviceModule.AudioTrackStateCallback;
 /**
  * Peer connection client implementation.
  *
- * <p>All public methods are routed to local looper thread.
+ * All public methods are routed to local looper thread.
  * All PeerConnectionEvents callbacks are invoked from the same looper thread.
  * This class is a singleton.
  */

@@ -118,13 +118,6 @@ public class CallFragment extends Fragment {
     if (!videoCallEnabled) {
       cameraSwitchButton.setVisibility(View.INVISIBLE);
     }
-    if (captureSliderEnabled) {
-      captureFormatSlider.setOnSeekBarChangeListener(
-          new CaptureQualityController(captureFormatText, callEvents));
-    } else {
-      captureFormatText.setVisibility(View.GONE);
-      captureFormatSlider.setVisibility(View.GONE);
-    }
   }
 
   // TODO(sakal): Replace with onAttach(Context) once we only support API level 23+.
